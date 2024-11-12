@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-function! s:IfErr()
+function! iferr#ifErr() abort
   let bpos = wordcount()['cursor_bytes']
   let out = systemlist('iferr -pos ' . bpos, bufnr('%'))
   if len(out) == 1
@@ -12,5 +12,3 @@ function! s:IfErr()
   call setpos('.', pos)
   silent normal! 4j
 endfunction
-
-command! -buffer -nargs=0 IfErr call s:IfErr()

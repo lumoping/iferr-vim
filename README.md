@@ -7,7 +7,7 @@ Generate `if err != nil {` block for current function.
 Install and update by
 
 ```console
-$ go install github.com/koron/iferr@latest
+go install github.com/koron/iferr@latest
 ```
 
 Run, it get `if err != nil {` block for the postion at 1234 bytes.
@@ -15,18 +15,19 @@ Run, it get `if err != nil {` block for the postion at 1234 bytes.
 ```console
 $ iferr -pos 1234 < main.go
 if err != nil {
-	return ""
+ return ""
 }
 ```
 
 ```console
 $ iferr -pos 1234 < main.go
 if err != nil {
-	return ""
+ return ""
 }
 ```
 
 Customize your error message:
+
 ```console
 $ iferr -pos 110 -message 'fmt.Errorf("failed to %w", err)' < main.go
 if err != nil {
@@ -36,10 +37,11 @@ if err != nil {
 
 ## Vim plugin
 
-Copy `vim/ftplugin/go/iferr.vim` as `~/.vim/ftplugin/go/iferr.vim`.
-
-It defines `:IfErr` command for go filetype. It will insert `if err != nil {`
-block at next line of the cursor.
+```lua
+return {
+  "lumoping/iferr-vim",
+}
+```
 
 Before:
 
@@ -60,8 +62,8 @@ package foo
 import "io"
 
 func Foo() (io.Reader, error) {
-	if err != nil {
-		return nil, err
-	}
+ if err != nil {
+  return nil, err
+ }
 } // new cursor is at here.
 ```
